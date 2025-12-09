@@ -1,3 +1,4 @@
 module liveLigaFratello {
 	requires java.sql;
+	requires java.desktop;
 }

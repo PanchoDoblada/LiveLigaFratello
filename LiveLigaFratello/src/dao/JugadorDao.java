@@ -2,7 +2,6 @@ package dao;
 
 import java.util.List;
 
-import modelo.Equipo;
 import modelo.Jugador;
 
 public interface JugadorDao {
