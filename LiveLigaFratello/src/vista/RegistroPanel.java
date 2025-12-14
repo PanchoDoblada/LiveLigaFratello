@@ -27,7 +27,6 @@ public class RegistroPanel extends FondoPanel{
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
 
-        // PANEL CENTRAL CON TRANSPARENCIA
         JPanel panelRegistro = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {

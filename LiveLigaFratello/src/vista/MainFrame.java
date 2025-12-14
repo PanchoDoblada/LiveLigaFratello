@@ -59,4 +59,14 @@ public class MainFrame extends JFrame{
 		
 		panel.repaint();
 	}
+	
+	public void mostrarPanelJugadores() {
+		panel.removeAll();
+		
+		panel.add(new JugadoresPanel(this));
+		
+		panel.revalidate();
+		
+		panel.repaint();
+	}
 }

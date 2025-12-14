@@ -93,8 +93,7 @@ public LoginPanel(MainFrame frame) {
 
         btnLogin.addActionListener(e -> {
             //TODO: Lógica para comprobar si existe el usuario
-        	
-        	
+        	frame.mostrarPanelJugadores();
         });
         
         btnRegistro.addActionListener(e -> {
