@@ -1,100 +1,118 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class RegistroPanel extends FondoPanel{
-	
+
 	public RegistroPanel(MainFrame frame) {
 		
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\futbol.jpg");
-        
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoRegistro.jpg");
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createEmptyBorder(60, 300, 100, 300));
         setOpaque(false);
 
-        JPanel panelLogin = new JPanel() {
+        // PANEL CENTRAL CON TRANSPARENCIA
+        JPanel panelRegistro = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                
-                Graphics2D g2 = (Graphics2D) g.create();
 
+                Graphics2D g2 = (Graphics2D) g.create();
                 g2.setColor(new Color(255, 255, 255, 180));
-                
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
                 g2.dispose();
             }
         };
-        
-        panelLogin.setLayout(new BoxLayout(panelLogin, BoxLayout.Y_AXIS));
-        panelLogin.setOpaque(false); 
-        
-        JLabel tituloLogin = new JLabel("LIVE LIGA FRATELLO!");
-        tituloLogin.setFont(new Font("Algerian", Font.BOLD, 24));
-        tituloLogin.setForeground(new Color(34, 56, 22));
-        tituloLogin.setAlignmentX(CENTER_ALIGNMENT);
-        
-        JLabel subTituloLogin = new JLabel("La mejor liga de la Comunidad Valenciana");
-        subTituloLogin.setFont(new Font("Arial",0, 18));
-        subTituloLogin.setForeground(new Color(84, 97, 77));
-        subTituloLogin.setAlignmentX(CENTER_ALIGNMENT);
-        
-        JLabel lblUser = new JLabel("Usuario:");
-        lblUser.setAlignmentX(CENTER_ALIGNMENT);
-        
-        JTextField txtUser = new JTextField(15);
-        txtUser.setMaximumSize(txtUser.getPreferredSize());
-        txtUser.setAlignmentX(CENTER_ALIGNMENT);
 
-        JLabel lblPass = new JLabel("Contraseña:");
-        lblPass.setAlignmentX(CENTER_ALIGNMENT);
-        
+        panelRegistro.setOpaque(false);
+        panelRegistro.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(15, 15, 15,15);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        gbc.gridx = 0; 
+        gbc.gridy = 0;
+        panelRegistro.add(new JLabel("Usuario"), gbc);
+
+        gbc.gridx = 1;
+        JTextField txtUsuario = new JTextField(15);
+        panelRegistro.add(txtUsuario, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 1;
+        panelRegistro.add(new JLabel("Contraseña"), gbc);
+
+        gbc.gridx = 1;
         JPasswordField txtPass = new JPasswordField(15);
-        txtPass.setMaximumSize(txtPass.getPreferredSize());
-        txtPass.setAlignmentX(CENTER_ALIGNMENT);
+        panelRegistro.add(txtPass, gbc);
 
-        JButton btnLogin = new JButton("Entrar");
-        btnLogin.setAlignmentX(CENTER_ALIGNMENT);
+        gbc.gridx = 0; 
+        gbc.gridy = 2;
+        panelRegistro.add(new JLabel("Correo"), gbc);
+
+        gbc.gridx = 1;
+        JTextField txtCorreo = new JTextField(15);
+        panelRegistro.add(txtCorreo, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 3;
+        panelRegistro.add(new JLabel("Género"), gbc);
+
+        gbc.gridx = 1;
+        JComboBox<String> seleccionaGenero = new JComboBox<>();
+        seleccionaGenero.addItem("Mujer");
+        seleccionaGenero.addItem("Hombre");
+        panelRegistro.add(seleccionaGenero, gbc);
+
+        gbc.gridx = 0; 
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        JButton btnRegistrar = new JButton("Registrarse");
+        panelRegistro.add(btnRegistrar, gbc);
         
-        JButton btnRegistro = new JButton("Registrarme");
-        btnRegistro.setAlignmentX(CENTER_ALIGNMENT);
+        gbc.insets = new Insets(0, 15, 15, 15);
         
-        panelLogin.add(Box.createVerticalStrut(30));
-        panelLogin.add(tituloLogin);
-        panelLogin.add(Box.createVerticalStrut(10));
-        panelLogin.add(subTituloLogin);
-        panelLogin.add(Box.createVerticalStrut(10));
-        panelLogin.add(lblUser);
-        panelLogin.add(txtUser);
-        panelLogin.add(Box.createVerticalStrut(10));
-        panelLogin.add(lblPass);
-        panelLogin.add(txtPass);
-        panelLogin.add(Box.createVerticalStrut(20));
-        panelLogin.add(btnLogin);
-        panelLogin.add(Box.createVerticalStrut(10));
-        panelLogin.add(btnRegistro);
-        panelLogin.add(Box.createVerticalStrut(50));
-
-        add(Box.createVerticalGlue());
-        add(panelLogin);
-        add(Box.createVerticalGlue());
-
-        btnLogin.addActionListener(e -> {
-            // Aquí verificarías usuario y contraseña con la BD
+        gbc.gridx = 0; 
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        JButton btnVolver = new JButton("Volver");
+        panelRegistro.add(btnVolver, gbc);
+        
+        btnVolver.addActionListener(e -> {
+        	frame.mostrarLogin();
         });
+
+        panelRegistro.setPreferredSize(new Dimension(450, 400));
+        panelRegistro.setMaximumSize(new Dimension(450, 400));
+        panelRegistro.setMinimumSize(new Dimension(450, 400));
+
+
+        add(Box.createVerticalGlue());
+        add(panelRegistro);
+        add(Box.createVerticalGlue());
+        
+        
+        
+        
 	}
+	
 	
 	
 }

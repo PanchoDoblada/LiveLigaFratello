@@ -26,14 +26,34 @@ public class MainFrame extends JFrame{
 		
 		add(panel, BorderLayout.CENTER);
 		
-		mostrarRegistro();
+		mostrarLogin();
 	}
 	
-	public void mostrarRegistro() {
+	public void mostrarLogin() {
 		
 		panel.removeAll();
 		
+		panel.add(new LoginPanel(this));
+		
+		panel.revalidate();
+		
+		panel.repaint();
+	}
+	
+	public void mostrarRegistro() {
+		panel.removeAll();
+		
 		panel.add(new RegistroPanel(this));
+		
+		panel.revalidate();
+		
+		panel.repaint();
+	}
+	
+	public void mostrarMenu() {
+		panel.removeAll();
+		
+		panel.add(new MenuPanel(this));
 		
 		panel.revalidate();
 		
