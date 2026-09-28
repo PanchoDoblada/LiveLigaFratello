@@ -5,8 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -15,9 +13,10 @@ import javax.swing.JTextField;
 
 import modelo.Posicion;
 
-public class JugadoresPanel extends FondoPanel{
-
-	public JugadoresPanel(MainFrame frame) {
+public class EquiposPanel extends FondoPanel{
+	
+	public EquiposPanel (MainFrame frame) {
+		
 		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg");
 		
 		setOpaque(false);
@@ -34,13 +33,13 @@ public class JugadoresPanel extends FondoPanel{
 		
 		gbcTitulo.insets = new Insets(20, 0, 10, 0);
 		
-		JLabel tituloJugadores = new JLabel("Lista Jugadores");
+		JLabel tituloEquipos = new JLabel("Lista Equipos");
 		
-		tituloJugadores.setFont(new Font("Arial", Font.BOLD, 22));
+		tituloEquipos.setFont(new Font("Arial", Font.BOLD, 22));
 		
-		tituloJugadores.setHorizontalAlignment(JLabel.CENTER);
+		tituloEquipos.setHorizontalAlignment(JLabel.CENTER);
 		
-		add(tituloJugadores, gbcTitulo);
+		add(tituloEquipos, gbcTitulo);
 		
 		
 		GridBagConstraints gbcFormulario = new GridBagConstraints();
@@ -54,50 +53,44 @@ public class JugadoresPanel extends FondoPanel{
 		gbcFormulario.weighty= 1;
 		
 		
-		JPanel panelFormulario = formularioJugadores();
+		JPanel panelFormulario = formularioJEquipos();
 		
 		add(panelFormulario, gbcFormulario);
-		
-		
-	}
 	
-	private JPanel formularioJugadores() {
-		
+	
+	}
+
+	private JPanel formularioJEquipos() {
+	
 		JPanel panel = new JPanel(new GridBagLayout());
 		
 	    panel.setOpaque(false);
-
+	
 	    GridBagConstraints gbcFormulario = new GridBagConstraints();
 	    
 	    gbcFormulario.insets = new Insets(10, 10, 10, 10);
 	    
 	    gbcFormulario.anchor = GridBagConstraints.WEST;
-
+	
 	    // label selecciona equipo
 	    
 	    gbcFormulario.gridx = 0;
 	    
 	    gbcFormulario.gridy = 0;
 	    
-	    JLabel equipolbl = new JLabel("Selecciona equipo:");
+	    JLabel equipolbl = new JLabel("Nombre equipo:");
 	    
 	    panel.add(equipolbl, gbcFormulario);
-
+	
 	    // combo equipos
 	    
 	    gbcFormulario.gridx = 1;
 	    
 	    gbcFormulario.fill = GridBagConstraints.HORIZONTAL;
 	    
+	    JTextField nombreEquipoTxt = new JTextField(20); 
 	    
-	    
-	    //TODO: rellenar con los equipos de la BBDD
-	    
-	    String [] equipos = {"Selecciona equipo"};
-
-	    JComboBox<String> comboEquipos = new JComboBox<>(equipos);
-	    
-	    panel.add(comboEquipos, gbcFormulario);
+	    panel.add(nombreEquipoTxt, gbcFormulario);
 	    
 	    //label nombre
 	    
@@ -105,66 +98,40 @@ public class JugadoresPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 0;
 	    
-	    JLabel nombrelbl = new JLabel("Nombre:");
+	    JLabel ciudadLbl = new JLabel("Ciudad:");
 	    
-	    panel.add(nombrelbl, gbcFormulario);
+	    panel.add(ciudadLbl, gbcFormulario);
 	    
-	    //txt nombre
+	    //txt ciudad
 	    
 	    gbcFormulario.gridx = 3;
 	    
 	    gbcFormulario.gridy = 0;
 	    
-	    JTextField nombretxt = new JTextField(15);
+	    JTextField ciudadTxt = new JTextField(15);
 	    
-	    panel.add(nombretxt, gbcFormulario);
+	    panel.add(ciudadTxt, gbcFormulario);
 	    
-	    //Dorsal lbl
+	    //entrenador lbl
 	    
 	    gbcFormulario.gridx = 0;
 	    
 	    gbcFormulario.gridy = 1;
 	    
-	    JLabel dorsalLbl = new JLabel("Dorsal:");
+	    JLabel entrenadorLbl = new JLabel("Entrenador:");
 	    
-	    panel.add(dorsalLbl, gbcFormulario);
+	    panel.add(entrenadorLbl, gbcFormulario);
 	    
-	    //Dorsal COMBO
-	    //TODO: Lógica para que el dorsal no este repetido
+	    //entrenador txt
 	    
 	    gbcFormulario.gridx = 1;
 	    
 	    gbcFormulario.gridy = 1;
 	    
+	    JTextField entrenadorTxt = new JTextField(20);
 	    
-	    JComboBox<Integer> comboDorsal = new JComboBox<>();
+	    panel.add(entrenadorTxt, gbcFormulario);
 	    
-	    for(int i = 0; i <= 50; i++) {
-	    	comboDorsal.addItem(i);
-	    }
-	    
-	    panel.add(comboDorsal, gbcFormulario);
-	    
-	    
-	    //label posicion
-	    
-	    gbcFormulario.gridx = 2;
-	    
-	    gbcFormulario.gridy = 1;
-	    
-	    JLabel posicionLbl = new JLabel("Posición:");
-	    
-	    panel.add(posicionLbl, gbcFormulario);
-	    
-	    //ENUM Posicion
-	    
-	    gbcFormulario.gridx = 3;
-	    
-	    gbcFormulario.gridy = 1;
-	    
-	    JComboBox<Posicion> comboPosicion = new JComboBox<>(Posicion.values());
-	    
-	    panel.add(comboPosicion, gbcFormulario);
 	    
 	    //JButton añadir
 	    
@@ -172,9 +139,9 @@ public class JugadoresPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 2;
 	    
-	    JButton addJugador = new JButton("Añadir");
+	    JButton addEquipo = new JButton("Añadir");
 	    
-	    panel.add(addJugador, gbcFormulario);
+	    panel.add(addEquipo, gbcFormulario);
 	    
 	    //JButton actualizar
 	    
@@ -182,9 +149,9 @@ public class JugadoresPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 2;
 	    
-	    JButton modificarJugadorBtn = new JButton("Modificar");
+	    JButton modificarEquipoBtn = new JButton("Modificar");
 	    
-	    panel.add(modificarJugadorBtn, gbcFormulario);
+	    panel.add(modificarEquipoBtn, gbcFormulario);
 	    
 	    //JButton Listar
 	    
@@ -192,9 +159,9 @@ public class JugadoresPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 2;
 	    
-	    JButton listarJugadorBtn = new JButton("Listar");
+	    JButton listarEquipoBtn = new JButton("Listar");
 	    
-	    panel.add(listarJugadorBtn, gbcFormulario);
+	    panel.add(listarEquipoBtn, gbcFormulario);
 	    
 	    //JButton Eliminar
 	    
@@ -202,9 +169,9 @@ public class JugadoresPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 2;
 	    
-	    JButton eliminarJugadorBtn = new JButton("Eliminar");
+	    JButton eliminarEquipoBtn = new JButton("Eliminar");
 	    
-	    panel.add(eliminarJugadorBtn, gbcFormulario);
+	    panel.add(eliminarEquipoBtn, gbcFormulario);
 	    
 	    //JButton Limpiar
 	    
@@ -214,20 +181,22 @@ public class JugadoresPanel extends FondoPanel{
 	    
 	    gbcFormulario.weightx = 1;
 	    
-	    JButton limpiarJugadorBtn = new JButton("Limpiar");
+	    JButton limpiarEquipoBtn = new JButton("Limpiar");
 	    
-	    panel.add(limpiarJugadorBtn, gbcFormulario);
+	    panel.add(limpiarEquipoBtn, gbcFormulario);
 	    
 	    return panel;
 	}
 	
 	private JPanel tablaJugadores() {
-		//TODO: Mostraremos la tabla jugadores recuperandola desde la BBDD
+		//TODO: Mostraremos la tabla equipos recuperandola desde la BBDD
 		
 		JPanel panel = new JPanel(new GridBagLayout());
 		
 		
 		return panel;
 	}
-	
+
 }
+
+

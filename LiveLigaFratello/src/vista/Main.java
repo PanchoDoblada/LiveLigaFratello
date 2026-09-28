@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.SwingUtilities;
 
+import utiles.Util;
+
 public class Main {
 
 	public static void main(String[] args) {

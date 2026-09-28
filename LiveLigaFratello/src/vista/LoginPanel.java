@@ -34,6 +34,7 @@ public LoginPanel(MainFrame frame) {
                 g2.setColor(new Color(255, 255, 255, 180));
                 
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+                
                 g2.dispose();
             }
         };
@@ -93,7 +94,7 @@ public LoginPanel(MainFrame frame) {
 
         btnLogin.addActionListener(e -> {
             //TODO: Lógica para comprobar si existe el usuario
-        	frame.mostrarPanelJugadores();
+        	frame.mostrarMenu();
         });
         
         btnRegistro.addActionListener(e -> {

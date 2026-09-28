@@ -13,7 +13,7 @@ public class MainFrame extends JFrame{
 		
 		setTitle("Live Liga Fratello");
 		
-		setSize(1000, 600);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		setLocationRelativeTo(null);
 		
@@ -60,13 +60,5 @@ public class MainFrame extends JFrame{
 		panel.repaint();
 	}
 	
-	public void mostrarPanelJugadores() {
-		panel.removeAll();
-		
-		panel.add(new JugadoresPanel(this));
-		
-		panel.revalidate();
-		
-		panel.repaint();
-	}
+	
 }
