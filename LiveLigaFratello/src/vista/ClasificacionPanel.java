@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class ClasificacionPanel extends FondoPanel{
 
 	public ClasificacionPanel(MainFrame frame) {
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg");
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg", 1);
 		setOpaque(false);
 		
 		setLayout(new GridBagLayout());

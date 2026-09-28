@@ -18,7 +18,7 @@ public class LoginPanel extends FondoPanel{
 	
 public LoginPanel(MainFrame frame) {
 		
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoLogin.jpg");
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoLogin.jpg", 100);
         
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(60, 300, 100, 300));

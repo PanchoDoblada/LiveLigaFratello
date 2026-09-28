@@ -22,7 +22,7 @@ public class RegistroPanel extends FondoPanel{
 
 	public RegistroPanel(MainFrame frame) {
 		
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoRegistro.jpg");
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoRegistro.jpg", 100);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         

@@ -17,7 +17,7 @@ public class EquiposPanel extends FondoPanel{
 	
 	public EquiposPanel (MainFrame frame) {
 		
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg");
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg", 100);
 		
 		setOpaque(false);
 		

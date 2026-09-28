@@ -25,7 +25,7 @@ public class MenuPanel extends FondoPanel{
 	private CardLayout cardlayout;
 	
 	public MenuPanel(MainFrame frame) {
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondomenu.jpg");
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondomenu.jpg", 100);
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
@@ -104,7 +104,7 @@ public class MenuPanel extends FondoPanel{
         
         cardlayout = (CardLayout) panelMenu.getLayout();
         
-        panelMenu.add(cardHistoria(), "Historia");
+        panelMenu.add(cardHistoria(frame), "Historia");
         panelMenu.add(cardJugadores(frame), "Jugadores");
         panelMenu.add(cardEquipos(frame), "Equipos");
         panelMenu.add(cardPartidos(frame), "Partidos");
@@ -125,14 +125,20 @@ public class MenuPanel extends FondoPanel{
         
 	}
 	
-	private JPanel cardHistoria() {
-		JPanel panelHistoria = new JPanel();
+	private JPanel cardHistoria(MainFrame frame) {
+		JPanel panel = new JPanel();
 		
-		panelHistoria.setBackground(Color.white);
+		panel.setBackground(Color.white);
 		
-		panelHistoria.add(new JLabel("Panel historia"));
+		panel.removeAll();
 		
-		return panelHistoria;
+		panel.add(new HistoriaPanel(frame));
+		
+		panel.revalidate();
+		
+		panel.repaint();
+		
+		return panel;
 	}
 	
 	private JPanel cardJugadores(MainFrame frame) {

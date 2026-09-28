@@ -18,7 +18,7 @@ import modelo.Posicion;
 public class JugadoresPanel extends FondoPanel{
 
 	public JugadoresPanel(MainFrame frame) {
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg");
+		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg", 50);
 		
 		setOpaque(false);
 		
