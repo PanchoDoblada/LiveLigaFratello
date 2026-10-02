@@ -130,13 +130,7 @@ public class MenuPanel extends FondoPanel{
 		
 		panel.setBackground(Color.white);
 		
-		panel.removeAll();
-		
 		panel.add(new HistoriaPanel(frame));
-		
-		panel.revalidate();
-		
-		panel.repaint();
 		
 		return panel;
 	}
@@ -147,13 +141,7 @@ public class MenuPanel extends FondoPanel{
 		
 		panel.setBackground(Color.white);
 		
-		panel.removeAll();
-		
 		panel.add(new JugadoresPanel(frame));
-		
-		panel.revalidate();
-		
-		panel.repaint();
 		
 		return panel;
 	}
@@ -163,13 +151,7 @@ public class MenuPanel extends FondoPanel{
 		
 		panel.setBackground(Color.white);
 		
-		panel.removeAll();
-		
 		panel.add(new EquiposPanel(frame));
-		
-		panel.revalidate();
-		
-		panel.repaint();
 		
 		return panel;
 		
@@ -178,9 +160,10 @@ public class MenuPanel extends FondoPanel{
 	private JPanel cardPartidos(MainFrame frame) {
 		
 		JPanel panelPartidos = new JPanel();
+		
 		panelPartidos.setBackground(Color.white);
 		
-		panelPartidos.add(new JLabel("Panel partidos"));
+		panelPartidos.add(new PartidosPanel(frame));
 		
 		return panelPartidos;
 	}
@@ -190,13 +173,7 @@ public class MenuPanel extends FondoPanel{
 		
 		panel.setBackground(Color.white);
 		
-		panel.removeAll();
-		
 		panel.add(new ClasificacionPanel(frame));
-		
-		panel.revalidate();
-		
-		panel.repaint();
 		
 		return panel;
 		
