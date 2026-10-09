@@ -177,7 +177,7 @@ public class PartidosPanel extends FondoPanel{
 	    
 	    JComboBox<Integer> comboJornadas = new JComboBox<>();
 	    
-	    for(int i = 0; i <= 14; i++) {
+	    for(int i = 0; i <= 26; i++) {
 	    	comboJornadas.addItem(i);
 	    }
 	    
