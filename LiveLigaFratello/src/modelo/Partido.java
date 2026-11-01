@@ -8,6 +8,7 @@ public class Partido {
 	private int id_equipo_visitante;
 	private int goles_equipo_local;
 	private int goles_equipo_visitante;
+	private EstadoPartido estadoPartido;
 	
 	public Partido(int jornada, int id_equipo_local, int id_equipo_visitante, int goles_equipo_local, int goles_equipo_visitante) {
 		this.jornada = jornada;
@@ -56,6 +57,14 @@ public class Partido {
 	@Override
 	public String toString() {
 		return "Partido [ jornada: " + jornada +", id_equipo_local: " + id_equipo_local + ", id_equipo_visitante: " + id_equipo_visitante + ", goles local: " + goles_equipo_local + ", goles visitante: " + goles_equipo_visitante;
+	}
+
+	public EstadoPartido getEstadoPartido() {
+		return estadoPartido;
+	}
+
+	public void setEstadoPartido(EstadoPartido estadoPartido) {
+		this.estadoPartido = estadoPartido;
 	}
 	
 	
