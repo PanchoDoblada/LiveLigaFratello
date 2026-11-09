@@ -6,14 +6,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import modelo.Posicion;
-
 public class EquiposPanel extends FondoPanel{
+	
+	private JTextField nombreEquipoTxt;
+	private JTextField ciudadTxt;
+	private JTextField entrenadorTxt;
 	
 	public EquiposPanel (MainFrame frame) {
 		
@@ -86,7 +87,7 @@ public class EquiposPanel extends FondoPanel{
 	    
 	    gbcFormulario.fill = GridBagConstraints.HORIZONTAL;
 	    
-	    JTextField nombreEquipoTxt = new JTextField(20); 
+	    nombreEquipoTxt = new JTextField(20); 
 	    
 	    panel.add(nombreEquipoTxt, gbcFormulario);
 	    
@@ -106,7 +107,7 @@ public class EquiposPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 0;
 	    
-	    JTextField ciudadTxt = new JTextField(15);
+	    ciudadTxt = new JTextField(15);
 	    
 	    panel.add(ciudadTxt, gbcFormulario);
 	    
@@ -126,7 +127,7 @@ public class EquiposPanel extends FondoPanel{
 	    
 	    gbcFormulario.gridy = 1;
 	    
-	    JTextField entrenadorTxt = new JTextField(20);
+	    entrenadorTxt = new JTextField(20);
 	    
 	    panel.add(entrenadorTxt, gbcFormulario);
 	    
@@ -186,7 +187,7 @@ public class EquiposPanel extends FondoPanel{
 	    return panel;
 	}
 	
-	private JPanel tablaJugadores() {
+	private JPanel tablaEquipos() {
 		//TODO: Mostraremos la tabla equipos recuperandola desde la BBDD
 		
 		JPanel panel = new JPanel(new GridBagLayout());
