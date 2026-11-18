@@ -25,7 +25,7 @@ public class MenuPanel extends FondoPanel{
 	private CardLayout cardlayout;
 	
 	public MenuPanel(MainFrame frame) {
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondomenu.jpg", 100);
+		super("/imagenes/fondomenu.jpg", 100);
 		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);

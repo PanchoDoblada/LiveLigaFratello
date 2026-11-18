@@ -17,6 +17,10 @@ public class Equipo {
 		return id_equipo;
 	}
 	
+	public void setId_equipo(int id_equipo) {
+		this.id_equipo = id_equipo;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

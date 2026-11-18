@@ -107,6 +107,7 @@ public class UsuarioDaoImpl implements UsuarioDao{
                     );
                     usuario.setGenero(rs.getString("genero"));
                     usuario.setFechaCreacion(rs.getTimestamp("creado_en"));
+                    usuario.setRol(rs.getString("rol"));
 
                     return usuario;
                 }

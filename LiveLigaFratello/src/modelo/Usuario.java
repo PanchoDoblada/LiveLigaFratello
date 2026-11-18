@@ -9,6 +9,7 @@ public class Usuario {
 	private String email;
 	private String genero;
 	private Timestamp fechaCreacion;
+	private String rol;
 	
 	public Usuario() {
 		
@@ -69,6 +70,16 @@ public class Usuario {
 		this.fechaCreacion = fechaCreacion;
 	}
 	
-	
+	public String getRol() {
+	    return rol;
+	}
+
+	public void setRol(String rol) {
+	    this.rol = rol;
+	}
+
+	public boolean esAdmin() {
+	    return "admin".equalsIgnoreCase(rol);
+	}
 	
 }

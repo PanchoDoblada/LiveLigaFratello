@@ -19,14 +19,25 @@ public class Seguridad {
     }
 
     // Hashea la contraseña con PBKDF2
-    public static String generarHashPassword(String password, byte[] salt, int iterations, int keyLength) 
+    public static String generarHashPassword(String password, byte[] salt,
+            int iterations, int keyLength)
             throws NoSuchAlgorithmException, InvalidKeySpecException {
-        
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, keyLength);
-        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-        byte[] hash = factory.generateSecret(spec).getEncoded();
-        
-        return Base64.getEncoder().encodeToString(hash);
+
+        PBEKeySpec spec = new PBEKeySpec(
+            password.toCharArray(), salt, iterations, keyLength
+        );
+
+        try {
+            SecretKeyFactory factory =
+                SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+
+            byte[] hash = factory.generateSecret(spec).getEncoded();
+
+            return Base64.getEncoder().encodeToString(hash);
+
+        } finally {
+            spec.clearPassword();
+        }
     }
     
     public static boolean verificarPassword(

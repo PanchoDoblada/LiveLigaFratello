@@ -7,6 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -14,15 +17,27 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import dao.UsuarioDaoImpl;
+import modelo.Usuario;
+
 public class RegistroPanel extends FondoPanel{
+	
+	private JTextField txtUsuario;
+	private JPasswordField txtPass;
+	private JTextField txtCorreo;
+	private JComboBox<String> seleccionaGenero;
+	private JButton btnRegistrar;
+
+	private UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
 
 	public RegistroPanel(MainFrame frame) {
 		
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoRegistro.jpg", 100);
+		super("/imagenes/fondoRegistro.jpg", 100);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
@@ -63,7 +78,7 @@ public class RegistroPanel extends FondoPanel{
 
         gbc.gridx = 1;
         
-        JTextField txtUsuario = new JTextField(15);
+        txtUsuario = new JTextField(15);
         
         panelRegistro.add(txtUsuario, gbc);
 
@@ -75,7 +90,7 @@ public class RegistroPanel extends FondoPanel{
 
         gbc.gridx = 1;
         
-        JPasswordField txtPass = new JPasswordField(15);
+        txtPass = new JPasswordField(15);
         
         panelRegistro.add(txtPass, gbc);
 
@@ -87,7 +102,7 @@ public class RegistroPanel extends FondoPanel{
 
         gbc.gridx = 1;
         
-        JTextField txtCorreo = new JTextField(15);
+        txtCorreo = new JTextField(15);
         
         panelRegistro.add(txtCorreo, gbc);
 
@@ -99,7 +114,7 @@ public class RegistroPanel extends FondoPanel{
 
         gbc.gridx = 1;
         
-        JComboBox<String> seleccionaGenero = new JComboBox<>();
+        seleccionaGenero = new JComboBox<>();
         
         seleccionaGenero.addItem("Mujer");
         
@@ -113,7 +128,7 @@ public class RegistroPanel extends FondoPanel{
         
         gbc.gridwidth = 2;
         
-        JButton btnRegistrar = new JButton("Registrarse");
+        btnRegistrar = new JButton("Registrarse");
         
         panelRegistro.add(btnRegistrar, gbc);
         
@@ -134,6 +149,8 @@ public class RegistroPanel extends FondoPanel{
         	frame.mostrarLogin();
         	
         });
+        
+        btnRegistrar.addActionListener(e -> registrarUsuario());
 
         panelRegistro.setPreferredSize(new Dimension(450, 400));
         
@@ -147,6 +164,88 @@ public class RegistroPanel extends FondoPanel{
         
         add(Box.createVerticalGlue());
         
+	}
+	
+	private void registrarUsuario() {
+
+	    String nombreUsuario = txtUsuario.getText().trim();
+	    String password = new String(txtPass.getPassword());
+	    String email = txtCorreo.getText().trim();
+	    String genero = (String) seleccionaGenero.getSelectedItem();
+
+	    if (nombreUsuario.isEmpty() || password.isEmpty() || email.isEmpty()) {
+
+	        JOptionPane.showMessageDialog(
+	            this,
+	            "Debes rellenar todos los campos.",
+	            "Campos incompletos",
+	            JOptionPane.WARNING_MESSAGE
+	        );
+
+	        return;
+	    }
+
+	    try {
+
+	        if (usuarioDao.existeNombreUsuario(nombreUsuario)) {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "Ese nombre de usuario ya está registrado."
+	            );
+
+	            return;
+	        }
+
+	        if (usuarioDao.existeEmail(email)) {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "Ese correo electrónico ya está registrado."
+	            );
+
+	            return;
+	        }
+
+	        Usuario usuario = new Usuario(
+	            nombreUsuario,
+	            password,
+	            email,
+	            genero
+	        );
+
+	        boolean registrado = usuarioDao.registrarUsuario(usuario);
+
+	        if (registrado) {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "Usuario registrado correctamente."
+	            );
+
+	            txtUsuario.setText("");
+	            txtPass.setText("");
+	            txtCorreo.setText("");
+
+	        } else {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "No se ha podido registrar el usuario."
+	            );
+	        }
+
+	    } catch (SQLException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+
+	        JOptionPane.showMessageDialog(
+	            this,
+	            "Se ha producido un error al registrar el usuario: " + e.getMessage(),
+	            "Error",
+	            JOptionPane.ERROR_MESSAGE
+	        );
+
+	        e.printStackTrace();
+	    }
 	}
 }
 

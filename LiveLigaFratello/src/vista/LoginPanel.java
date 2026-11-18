@@ -4,22 +4,35 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import dao.UsuarioDaoImpl;
+import modelo.Usuario;
+import utiles.Seguridad;
+
 public class LoginPanel extends FondoPanel{
 	
-public LoginPanel(MainFrame frame) {
+	private JTextField txtUser;
+	private JPasswordField txtPass;
+	private UsuarioDaoImpl usuarioDao = new UsuarioDaoImpl();
+	private MainFrame frame;
+	
+	public LoginPanel(MainFrame frame) {
 		
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondoLogin.jpg", 100);
-        
+		super("/imagenes/fondoLogin.jpg", 100);
+		
+		this.frame = frame;
+			
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(BorderFactory.createEmptyBorder(60, 300, 100, 300));
         setOpaque(false);
@@ -55,14 +68,14 @@ public LoginPanel(MainFrame frame) {
         JLabel lblUser = new JLabel("Usuario:");
         lblUser.setAlignmentX(CENTER_ALIGNMENT);
         
-        JTextField txtUser = new JTextField(15);
+        txtUser = new JTextField(15);
         txtUser.setMaximumSize(txtUser.getPreferredSize());
         txtUser.setAlignmentX(CENTER_ALIGNMENT);
 
         JLabel lblPass = new JLabel("Contraseña:");
         lblPass.setAlignmentX(CENTER_ALIGNMENT);
         
-        JPasswordField txtPass = new JPasswordField(15);
+        txtPass = new JPasswordField(15);
         txtPass.setMaximumSize(txtPass.getPreferredSize());
         txtPass.setAlignmentX(CENTER_ALIGNMENT);
 
@@ -92,13 +105,105 @@ public LoginPanel(MainFrame frame) {
         add(panelLogin);
         add(Box.createVerticalGlue());
 
-        btnLogin.addActionListener(e -> {
-            //TODO: Lógica para comprobar si existe el usuario
-        	frame.mostrarMenu();
-        });
+        btnLogin.addActionListener(e -> iniciarSesion());
         
         btnRegistro.addActionListener(e -> {
         	frame.mostrarRegistro();
         });
+	}
+	
+	private void iniciarSesion() {
+
+	    String nombreUsuario = txtUser.getText().trim();
+	    String password = new String(txtPass.getPassword());
+
+	    // Comrobamos los campos vacios
+	    if (nombreUsuario.isEmpty() || password.isEmpty()) {
+
+	        JOptionPane.showMessageDialog(
+	            this,
+	            "Introduce tu usuario y contraseña",
+	            "Introduce tu contraseña",
+	            JOptionPane.WARNING_MESSAGE
+	        );
+
+	        return;
+	    }
+
+	    try {
+
+	        // Buscar el usuario en la base de datos
+	        Usuario usuario = usuarioDao.buscarPorNombre(nombreUsuario);
+
+	        // Comprobar si existe
+	        if (usuario == null) {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "El usuario no está registrado"
+	            );
+
+	            return;
+	        }
+
+	        // Recuperar los datos almacenados de la contraseña
+	        String[] datosPassword = usuario.getPassword().split(":", 3);
+
+	        if (datosPassword.length != 3) {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "Los datos de la contraseña almacenada no son válidos"
+	            );
+
+	            return;
+	        }
+
+	        int iteraciones = Integer.parseInt(datosPassword[0]);
+	        String salt = datosPassword[1];
+	        String hashGuardado = datosPassword[2];
+
+	        // Verificar la contraseña
+	        boolean contraseñaCorrecta = Seguridad.verificarPassword(
+	            password,
+	            salt,
+	            hashGuardado,
+	            iteraciones,
+	            256
+	        );
+
+	        if (contraseñaCorrecta) {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "¡Bienvenido a Live Liga Fratelo!"
+	            );
+
+	            txtPass.setText("");
+	            
+	            frame.setUsuarioActual(usuario);
+	            frame.mostrarMenu();
+
+	        } else {
+
+	            JOptionPane.showMessageDialog(
+	                this,
+	                "Usuario o contraseña incorrectos"
+	            );
+
+	            txtPass.setText("");
+	        }
+
+	    } catch (SQLException | NumberFormatException e) {
+
+	        JOptionPane.showMessageDialog(
+	            this,
+	            "Error al iniciar sesión: " + e.getMessage(),
+	            "Error",
+	            JOptionPane.ERROR_MESSAGE
+	        );
+
+	        e.printStackTrace();
+	    }
 	}
 }

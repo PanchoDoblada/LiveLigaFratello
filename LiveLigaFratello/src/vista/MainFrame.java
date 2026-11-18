@@ -5,9 +5,12 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modelo.Usuario;
+
 public class MainFrame extends JFrame{
 	
 	private JPanel panel;
+	private Usuario usuarioActual;
 	
 	public MainFrame() {
 		
@@ -60,5 +63,16 @@ public class MainFrame extends JFrame{
 		panel.repaint();
 	}
 	
+	public void setUsuarioActual(Usuario usuario) {
+	    this.usuarioActual = usuario;
+	}
+
+	public Usuario getUsuarioActual() {
+	    return usuarioActual;
+	}
+
+	public boolean esAdminActual() {
+	    return usuarioActual != null && usuarioActual.esAdmin();
+	}
 	
 }
