@@ -7,7 +7,7 @@ import modelo.Equipo;
 
 public interface EquipoDao {
 	
-	Equipo obternerEquipo(int id) throws SQLException;
+	Equipo obtenerEquipo(int id) throws SQLException;
 	
 	void agregarEquipo(Equipo equipo) throws SQLException;
 	
