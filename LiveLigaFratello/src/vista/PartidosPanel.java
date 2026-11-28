@@ -16,8 +16,7 @@ import modelo.Posicion;
 public class PartidosPanel extends FondoPanel{
 
 	public PartidosPanel(MainFrame frame) {
-		super("C:\\Users\\gabri\\fratello_workspace\\LiveLigaFratello\\src\\imagenes\\fondo_blanco.jpg", 100);
-		
+		super("/imagenes/fondo_blanco.jpg", 100);		
 		setLayout(new GridBagLayout());
 		
 		GridBagConstraints gbcTitulo = new GridBagConstraints();

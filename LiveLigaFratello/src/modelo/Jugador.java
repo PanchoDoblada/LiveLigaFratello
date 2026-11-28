@@ -18,6 +18,10 @@ public class Jugador {
 	public int getId_jugador() {
 		return id_jugador;
 	}
+	
+	public void setId_jugador(int id_jugador) {
+	    this.id_jugador = id_jugador;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -45,6 +49,10 @@ public class Jugador {
 	
 	public int getId_equipo() {
 		return id_equipo;
+	}
+	
+	public void setId_equipo(int id_equipo) {
+	    this.id_equipo = id_equipo;
 	}
 
 	@Override

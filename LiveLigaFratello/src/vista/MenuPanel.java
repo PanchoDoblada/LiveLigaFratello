@@ -147,25 +147,26 @@ public class MenuPanel extends FondoPanel{
 	}
 	
 	private JPanel cardEquipos(MainFrame frame) {
-		JPanel panel = new JPanel();
 		
-		panel.setBackground(Color.white);
-		
-		panel.add(new EquiposPanel(frame));
-		
-		return panel;
-		
+	    JPanel panel = new JPanel();
+
+	    panel.setBackground(Color.white);
+
+	    panel.add(new EquiposPanel(frame));
+
+	    return panel;
+	    
 	}
 	
 	private JPanel cardPartidos(MainFrame frame) {
 		
-		JPanel panelPartidos = new JPanel();
+		JPanel panel = new JPanel();
 		
-		panelPartidos.setBackground(Color.white);
+		panel.setBackground(Color.white);
 		
-		panelPartidos.add(new PartidosPanel(frame));
+		panel.add(new PartidosPanel(frame));
 		
-		return panelPartidos;
+		return panel;
 	}
 	
 	private JPanel cardClasificacion(MainFrame frame) {
